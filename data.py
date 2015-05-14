@@ -10,7 +10,7 @@ class Subsection:
     def __init__(self, subsection):
         self.id = subsection['id']
         self.type = subsection['embedded_type']
-        self.name = subsection['name'].encode('utf8')
+        self.name = subsection['name']
 
 class Section:
 
@@ -22,7 +22,7 @@ class Section:
             self.to_section = Subsection(section['to'])
 
         if 'display_informations' in section:
-            network = section['display_informations']['network'].encode('utf8')
+            network = section['display_informations']['network']
             label = section['display_informations']['label']
             self.network_label = str()
             if network == 'Metro':

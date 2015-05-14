@@ -1,5 +1,5 @@
 
-# iwantgo
+# wannago
 
 Well, you have a date with your girlfriend, you're young and you're living in a busy capital with a lot of traffic.
 (And anyway, you don't have a car, it is too mainstream).
@@ -31,13 +31,13 @@ Efficiency: *-1000*
 
 What if power users (and developers essentially) could just write:
 ```console
-$ iwantgo "12 Rue de la Cité" from home
+$ wannago "12 Rue de la Cité" from home
 M14 - Bibliothèque François Mitterrand (x mn) => RER D - Juvisy (y mn) => Walk to "12 Rue de la Cité" (z mn) => ARRIVED.
 ```
 
 You can at this point do cool thing like:
 ```console
-$ iwantgo "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
+$ wannago "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
 RER B - Gare du Nord (x mn) => Walk to "5 Rue de Choisy" (y mn)
 ```
 

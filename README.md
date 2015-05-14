@@ -31,14 +31,14 @@ Efficiency: *-1000*
 
 What if power users (and developers essentially) could just write:
 ```console
-$ wannago to "12 Rue de la Cité" from home
-[total mn] M14 - Bibliothèque François Mitterrand (x mn) => RER D - Juvisy (y mn) => Walk to "12 Rue de la Cité" (z mn)
+$ wannago to EPITECH from home
+[79 mn] RER B - Mitry-Claye (Mitry-Mory) [4 mn] ==> Train K - Gare du Nord Surface (Paris) [16 mn] ==> RER B - Cit├® Universitaire (Paris) [13 mn] ==> T3a - PORTE D'ITALIE (Paris) [5 mn]
 ```
 
-You can at this point do cool thing like:
+I hope you could do cool thing like that, very soon:
 ```console
-$ wannago "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
-RER B - Gare du Nord (x mn) => Walk to "5 Rue de Choisy" (y mn)
+$ wannago to "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
+[total mn] RER B - Gare du Nord (x mn) => Walk to "5 Rue de Choisy" (y mn)
 ```
 
 Ok, so you're pretty hyped, right?

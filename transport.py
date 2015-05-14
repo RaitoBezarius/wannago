@@ -48,4 +48,7 @@ class LocationManager:
         return self.api.call(endpoint, params=params)
 
 def initialize_api(auth_key):
+    if auth_key == 'INSERT_YOUR_API_KEY_HERE':
+        raise RuntimeError("Hey! You didn't set API key !") # based on Shirokamii intelligence (a)
+
     return LocationManager(NavitiaImplementation(auth_key))

@@ -29,6 +29,8 @@ class Section:
                 self.network_label = 'M{line}'.format(line=label)
             elif network == 'Transilien':
                 self.network_label = 'Train {line}'.format(line=label)
+            elif network == 'RATP':
+                self.network_label = '{line}'.format(line=label)
             else:
                 self.network_label = '{net} {line}'.format(net=network, line=label)
 

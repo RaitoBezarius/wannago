@@ -1,9 +1,11 @@
+# coding: utf8
+
 class Subsection:
 
     def __init__(self, subsection):
         self.id = subsection['id']
         self.type = subsection['embedded_type']
-        self.name = subsection['name']
+        self.name = subsection['name'].encode('ascii', 'ignore')
 
 class Section:
 
@@ -18,7 +20,7 @@ class Section:
             network = section['display_informations']['network']
             label = section['display_informations']['label']
             self.network_label = str()
-            if network == 'Metro':
+            if network == 'Métro':
                 self.network_label = 'M{line}'.format(line=label)
             elif network == 'Transilien':
                 self.network_label = 'Train {line}'.format(line=label)

@@ -69,7 +69,7 @@ def main():
         subcommand_init(command_subparsers)
 
     args = parser.parse_args()
-    api = initialize_api('INSERT_YOUR_API_KEY_FOR_NAVITIA')
+    api = initialize_api('INSERT_YOUR_API_KEY')
     args.api = api
     args.func(args)
 

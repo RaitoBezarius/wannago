@@ -4,7 +4,7 @@ def report_journey(api, from_place, to_place, without=None):
     resp = api.compute_journey(from_place, to_place)
     journey = Journey(resp['journeys'][0])
 
-    message = '[{duration} mn] Current => {path}'
+    message = '[{duration} mn] {path}'
     subpaths = []
     for section in journey.sections:
         if section.type == 'public_transport':

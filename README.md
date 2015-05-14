@@ -16,7 +16,7 @@ You want to go to one place, using public transports. So, like always, you use y
 But seriously, your public transport's website planner (Transilien in France for example) is the biggest shit to get a quick journey from point A to point B:
 
 * You need to run the web browser, depending on your specs, it will take a lot of time to nothing.
-* You need to get the public transport's website address from {Google,DuckDuckGo,Bing,whatever}. (mandatory, if you have a super memory).
+* You need to get the public transport's website address from {Google,DuckDuckGo,Bing,whatever}. (not mandatory, if you have a super memory).
 * You need to load it, render it, [...] depending on if is optimized or not: In France, it is a big NO.
 * You need to enter point A and point B
     * Depending on how your website is coded, you will encounter different behaviors:
@@ -31,8 +31,8 @@ Efficiency: *-1000*
 
 What if power users (and developers essentially) could just write:
 ```console
-$ wannago "12 Rue de la Cité" from home
-M14 - Bibliothèque François Mitterrand (x mn) => RER D - Juvisy (y mn) => Walk to "12 Rue de la Cité" (z mn) => ARRIVED.
+$ wannago to "12 Rue de la Cité" from home
+[total mn] M14 - Bibliothèque François Mitterrand (x mn) => RER D - Juvisy (y mn) => Walk to "12 Rue de la Cité" (z mn)
 ```
 
 You can at this point do cool thing like:

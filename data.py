@@ -25,7 +25,7 @@ class Section:
             network = section['display_informations']['network'].encode('utf8')
             label = section['display_informations']['label']
             self.network_label = str()
-            if network == 'Métro':
+            if network == 'Metro':
                 self.network_label = 'M{line}'.format(line=label)
             elif network == 'Transilien':
                 self.network_label = 'Train {line}'.format(line=label)

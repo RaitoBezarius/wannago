@@ -1,23 +1,28 @@
 # coding: utf8
 
+import math
+
+def convert_duration_to_minutes(seconds):
+    return int(math.ceil(seconds / 60.0))
+
 class Subsection:
 
     def __init__(self, subsection):
         self.id = subsection['id']
         self.type = subsection['embedded_type']
-        self.name = subsection['name'].encode('ascii', 'ignore')
+        self.name = subsection['name'].encode('utf8')
 
 class Section:
 
     def __init__(self, section):
-        self.duration = section['duration'] / 60.0
+        self.duration = convert_duration_to_minutes(section['duration'])
         self.type = section['type']
         if self.type != 'waiting' and self.type != 'crow_fly':
             self.from_section = Subsection(section['from'])
             self.to_section = Subsection(section['to'])
 
         if 'display_informations' in section:
-            network = section['display_informations']['network']
+            network = section['display_informations']['network'].encode('utf8')
             label = section['display_informations']['label']
             self.network_label = str()
             if network == 'Métro':
@@ -33,5 +38,5 @@ class Section:
 class Journey:
 
     def __init__(self, journey):
-        self.duration = journey['duration'] / 60.0
+        self.duration = convert_duration_to_minutes(journey['duration'])
         self.sections = [Section(section) for section in journey['sections']]

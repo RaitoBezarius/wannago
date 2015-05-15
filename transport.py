@@ -1,4 +1,5 @@
 import requests
+from config import defaultConfig
 
 class NavitiaImplementation:
 
@@ -48,7 +49,11 @@ class LocationManager:
         return self.api.call(endpoint, params=params)
 
 def initialize_api(auth_key):
-    if auth_key == 'INSERT_YOUR_API_KEY_HERE':
-        raise RuntimeError("Hey! You didn't set API key !") # based on Shirokamii intelligence (a)
-
+    if auth_key is not None:
+        defaultConfig.setToken(auth_key)
+    else:
+        auth_key = defaultConfig.getToken()
+        if auth_key is None:
+            print('Please set your API token using \'-t\' option and try again')
+            exit(1)
     return LocationManager(NavitiaImplementation(auth_key))

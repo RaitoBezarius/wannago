@@ -59,7 +59,7 @@ def main():
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      description='Give you the movement list of your character from point A to point B in oneshot !')
 
-    parser.add_argument('--token', help='API key for Navitia.io')
+    parser.add_argument('--token', '-t', help='API key for Navitia.io', default=None)
     command_subparsers = parser.add_subparsers(help='sub-commands help')
 
     subcommands = [enable_coverage_switcher,
@@ -70,8 +70,7 @@ def main():
         subcommand_init(command_subparsers)
 
     args = parser.parse_args()
-    API_KEY = "INSERT_YOUR_API_KEY_HERE"
-    api = initialize_api(args.token or API_KEY)
+    api = initialize_api(args.token)
     args.api = api
     args.func(args)
 

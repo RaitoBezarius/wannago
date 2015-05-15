@@ -23,7 +23,7 @@ class LocationManager:
         self.default_zone = defaultConfig.getConfig('Coverage',
                                                     'DefaultZone',
                                                     defaultValue='fr-idf',
-                                                    writIfMissing=True)
+                                                    writeIfMissing=True)
 
     def whereiam(self, latitude, longitude):
         endpoint = 'coord/{latitude};{longitude}'.format(latitude=latitude,

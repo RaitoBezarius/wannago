@@ -23,14 +23,17 @@ class Section:
 
         if 'display_informations' in section:
             network = section['display_informations']['network']
+            physical_mode = section['display_informations']['physical_mode']
             label = section['display_informations']['label']
+            self.color = section['display_informations']['color']
             self.network_label = str()
-            if network == 'Metro':
-                self.network_label = 'M{line}'.format(line=label)
-            elif network == 'Transilien':
+            if network == 'Transilien':
                 self.network_label = 'Train {line}'.format(line=label)
             elif network == 'RATP':
-                self.network_label = '{line}'.format(line=label)
+                if physical_mode == 'Métro':
+                    self.network_label = 'M{line}'.format(line=label)
+                else:
+                    self.network_label = '{line}'.format(line=label)
             else:
                 self.network_label = '{net} {line}'.format(net=network, line=label)
 

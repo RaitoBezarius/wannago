@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # coding: utf8
 
 import argparse
@@ -9,7 +10,7 @@ def try_get_current_place():
     return None
 
 def handle_coverage_switching(args):
-    raise NotImplemented
+    args.api.set_coverage_zone(args.zone)
 
 def handle_journey_computing(args):
     from_place = args.from_place or try_get_current_place()

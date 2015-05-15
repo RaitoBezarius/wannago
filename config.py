@@ -20,9 +20,9 @@ class Config(configparser.ConfigParser):
             self[section][name] = value
         return value
 
-    def getConfig(self, section, name):
+    def getConfig(self, section, name, defaultValue=None):
         if not section in self or not name in self[section]:
-            return None
+            return defaultValue
         return self[section][name]
 
     def setToken(self, token):

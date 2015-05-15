@@ -47,7 +47,7 @@ Good. I've showed examples for Paris, essentially. But it supports every public 
 Status
 ======
 You need Python 3.4 for now and the requests lib (`pip install requests`).
-You need also a Navitia API Key, just register on navitia.io and copy it in the wannago.py's "INSERT_YOUR_API_KEY" place.
+You need also a Navitia API Key, just register on navitia.io and use the --token option once to set the token permanently.
 
 Hack it !
 

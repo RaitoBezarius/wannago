@@ -20,8 +20,10 @@ class Config(configparser.ConfigParser):
             self[section][name] = value
         return value
 
-    def getConfig(self, section, name, defaultValue=None):
+    def getConfig(self, section, name, defaultValue=None, writeIfMissing=False):
         if not section in self or not name in self[section]:
+            if writeIfMissing and defaultValue is not None:
+                self.setConfig(section, name, defaultValue)
             return defaultValue
         return self[section][name]
 

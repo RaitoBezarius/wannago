@@ -18,6 +18,7 @@ class Config(configparser.ConfigParser):
             self[section] = {}
         if not name in self[section] or overwrite:
             self[section][name] = value
+        return value
 
     def getConfig(self, section, name):
         if not section in self or not name in self[section]:

@@ -44,6 +44,11 @@ $ wannago to "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
 Ok, so you're pretty hyped, right?
 Good. I've showed examples for Paris, essentially. But it supports every public transport that Navitia.io supports.
 
+Tests
+=====
+Tests needs nosetests. (`pip install nosetests`)
+Run `nosetests tests/` inside the repository's folder.
+
 Status
 ======
 You need Python 3.4 for now and the requests lib (`pip install requests`).

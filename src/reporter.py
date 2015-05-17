@@ -21,12 +21,20 @@ def report_journey(api, from_place, to_place, without=None):
     subpaths = []
     for section in journey.sections:
         if section.type == 'public_transport':
-            subpath = '==> {net_label} - {to_place} [{duration} mn]'.\
-            format(net_label=section.network_label,
-                   to_place=section.to_section.name,
-                   duration=section.duration)
+            subpath = '==> {net_label} - {to_place} [{duration} mn]'
+            subpath = subpath.format(net_label=section.network_label,
+                    to_place=section.to_section.name,
+                    duration=section.duration)
+
             if section.has_color:
                 subpath = format_color(section.color, subpath)
+
+            subpaths.append(subpath)
+        elif section.type == 'street_network' and section.length >= 300:
+            subpath = '==> Walk to {to_place} [{duration} mn - {length} meter]'
+            subpath = subpath.format(to_place=section.to_section.name,
+                    duration=section.duration,
+                    length=section.length)
 
             subpaths.append(subpath)
         else:

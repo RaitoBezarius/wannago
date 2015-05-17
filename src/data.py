@@ -25,6 +25,11 @@ class Section:
             self.from_section = Subsection(section['from'])
             self.to_section = Subsection(section['to'])
 
+        if self.type == 'street_network':
+            self.length = 0
+            for path in section['path']:
+                self.length += path['length']
+
         if 'display_informations' in section:
             network = section['display_informations']['network']
             physical_mode = section['display_informations']['physical_mode']

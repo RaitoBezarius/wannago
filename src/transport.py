@@ -21,6 +21,7 @@ class LocationManager:
 
     def __init__(self, api_impl):
         self.api = api_impl
+        self.aliases = defaultConfig.getSection('Aliases')
         self.default_zone = defaultConfig.getConfig('Coverage',
                                                     'DefaultZone',
                                                     defaultValue='fr-idf',
@@ -40,6 +41,9 @@ class LocationManager:
     def get_place_id(self, place):
         if not self.is_place(place):
             return place
+
+        if place in self.aliases:
+            return self.aliases[place]
 
         place = self.get_place(place)
         return place['places'][0]['id']

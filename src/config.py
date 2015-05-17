@@ -26,6 +26,12 @@ class Config(configparser.ConfigParser):
                 self.setConfig(section, name, defaultValue)
             return defaultValue
         return self[section][name]
+    
+    def getSection(self, section, defaultValue=[]):
+        if not section in self:
+            return defaultValue
+
+        return self[section]
 
     def setToken(self, token):
         self.setConfig('Navitia', 'Token', token)

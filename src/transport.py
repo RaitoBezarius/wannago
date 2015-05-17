@@ -13,7 +13,7 @@ class NavitiaImplementation:
                 headers=headers).json()
         if 'error' in result:
             raise RuntimeError("Error when querying Navitia API: {msg}."
-            "({params})".format(msg=result['message'], params=params))
+            "({params})".format(msg=result['error']['message'], params=params))
         return result
 
 class LocationManager:

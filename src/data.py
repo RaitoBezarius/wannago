@@ -1,9 +1,13 @@
 # coding: utf8
 
 import math
+import arrow
 
 def convert_duration_to_minutes(seconds):
     return int(math.ceil(seconds / 60.0))
+
+def convert_datetime(date):
+    return arrow.get(date, 'YYYYMMDDTHHmmss')
 
 class Subsection:
 
@@ -45,4 +49,6 @@ class Journey:
 
     def __init__(self, journey):
         self.duration = convert_duration_to_minutes(journey['duration'])
+        self.start_time = convert_datetime(journey['departure_date_time'])
+        self.end_time = convert_datetime(journey['arrival_date_time'])
         self.sections = [Section(section) for section in journey['sections']]

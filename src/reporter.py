@@ -1,23 +1,11 @@
 from data import Journey
-
-def format_color(hexa, message):
-    """
-    Please, better function, please. This is just a PoC done between two hour
-    of school.
-    """
-    r, g, b = int(hexa[0:2], 16), int(hexa[2:4], 16), int(hexa[4:6], 16)
-
-    escape_character = '\033[38;5;{fgcode}m'.format(fgcode=16 + 36 * r + b)
-
-    return '{color}{message}{reset}'.format(color=escape_character,
-            message=message,
-            reset='\033[0;00m')
+from color import format_color
 
 def report_journey(api, from_place, to_place, without=None):
     resp = api.compute_journey(from_place, to_place)
     journey = Journey(resp['journeys'][0])
 
-    message = '[{duration} mn]\n{path}'
+    message = '[{duration} mn] - [{start}]\n{path}\n[{end}]'
     subpaths = []
     for section in journey.sections:
         if section.type == 'public_transport':
@@ -32,7 +20,10 @@ def report_journey(api, from_place, to_place, without=None):
         else:
             print ('[DEBUG]: what to do with this section: {section}'.format(section=section))
 
-    message = message.format(duration=journey.duration, path='\n'.join(subpaths))
+    message = message.format(duration=journey.duration,
+            start=journey.start_time.format('HH:mm:ss'),
+            end=journey.end_time.format('HH:mm:ss'),
+            path='\n'.join(subpaths))
 
     print (message)
     return message

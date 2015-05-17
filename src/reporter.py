@@ -1,11 +1,15 @@
 from data import Journey
 from color import format_color
 
+def format_datetime(arrow_time):
+    return '{h}h{m}'.format(h=arrow_time.format('HH'),
+            m=arrow_time.format('mm'))
+
 def report_journey(api, from_place, to_place, without=None):
     resp = api.compute_journey(from_place, to_place)
     journey = Journey(resp['journeys'][0])
 
-    message = '[{duration} mn] - [{start_hour}h{start_minutes}]\n{path}\n[{end_hour}h{end_minutes}]'
+    message = '[{duration} mn] - [{start}]\n{path}\n[{end}]'
     subpaths = []
     for section in journey.sections:
         if section.type == 'public_transport':
@@ -29,10 +33,8 @@ def report_journey(api, from_place, to_place, without=None):
             print ('[DEBUG]: what to do with this section: {section}'.format(section=section))
 
     message = message.format(duration=journey.duration,
-            start_hour=journey.start_time.format('HH'),
-            start_minutes=journey.start_time.format('mm'),
-            end_hour=journey.end_time.format('HH'),
-            end_minutes=journey.end_time.format('mm'),
+            start=format_datetime(journey.start_time),
+            end=format_datetime(journey.end_time),
             path='\n'.join(subpaths))
 
     print (message)

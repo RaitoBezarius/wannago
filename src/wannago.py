@@ -5,6 +5,7 @@ import argparse
 import requests
 from transport import initialize_api
 from reporter import report_journey
+from config import defaultConfig
 
 def try_get_current_place():
     return None
@@ -17,7 +18,8 @@ def handle_journey_computing(args):
     report_journey(args.api, from_place, args.place)
 
 def handle_location_managing(args):
-    raise NotImplemented
+    place_id = args.api.get_place_id(args.place)
+    defaultConfig.setConfig('Aliases', args.name, place_id)
 
 def subcommand(func):
     def wrap(f):

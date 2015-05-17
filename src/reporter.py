@@ -1,17 +1,5 @@
 from data import Journey
-
-def format_color(hexa, message):
-    """
-    Please, better function, please. This is just a PoC done between two hour
-    of school.
-    """
-    r, g, b = int(hexa[0:2], 16), int(hexa[2:4], 16), int(hexa[4:6], 16)
-
-    escape_character = '\033[38;5;{fgcode}m'.format(fgcode=16 + 36 * r + b)
-
-    return '{color}{message}{reset}'.format(color=escape_character,
-            message=message,
-            reset='\033[0;00m')
+from color import format_color
 
 def report_journey(api, from_place, to_place, without=None):
     resp = api.compute_journey(from_place, to_place)

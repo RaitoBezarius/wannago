@@ -1,10 +1,10 @@
 argument		::= WORD
 
-goal_adress		::= "to" argument
+goal_address		::= "to" argument
 
-start_adress		::= "from" argument
+start_address		::= "from" argument
 
-journey			::= goal_adress start_adress?
+journey			::= goal_address start_address?
 
 command_type		::= journey
 

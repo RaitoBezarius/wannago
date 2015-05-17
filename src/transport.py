@@ -1,4 +1,5 @@
 import requests
+import arrow
 from config import defaultConfig
 
 class NavitiaImplementation:
@@ -52,7 +53,8 @@ class LocationManager:
         tplace_id = self.get_place_id(to_place)
 
         params = {'from': fplace_id,
-                'to': tplace_id}
+                'to': tplace_id,
+                'datetime': arrow.now().format('YYYYMMDDHHmmss')}
 
         return self.api.call(endpoint, params=params)
 

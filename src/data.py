@@ -26,6 +26,7 @@ class Section:
             physical_mode = section['display_informations']['physical_mode']
             label = section['display_informations']['label']
             self.color = section['display_informations']['color']
+            self.has_color = bool(self.color)
             self.network_label = str()
             if network == 'Transilien':
                 self.network_label = 'Train {line}'.format(line=label)

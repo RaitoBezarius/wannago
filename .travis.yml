@@ -3,9 +3,9 @@ python:
         - "3.3"
         - "3.4"
         - "nightly"
-install: "pip install -r requirements.txt"
+install: 
+        - pip install -r requirements.txt
+        - pip install codecov
 script: nosetests tests/
-before_install:
-        pip install codecov
 after_success:
         codecov

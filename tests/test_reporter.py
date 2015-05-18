@@ -1,7 +1,5 @@
-import sys
 from src.reporter import report_journey
 import unittest
-from unittest import mock
 import json
 
 class TestReportingSystem(unittest.TestCase):
@@ -19,6 +17,8 @@ class TestReportingSystem(unittest.TestCase):
             "journeys": [
                 {
                     "duration": 600,
+                    "departure_date_time": "20150902T144228",
+                    "arrival_date_time": "20150902T174230",
                     "sections": [
                         {
                            "duration": 600,

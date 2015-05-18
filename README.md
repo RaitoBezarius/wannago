@@ -1,6 +1,6 @@
 # wannago
-[![Build Status](https://travis-ci.org/RaitoBezarius/wannago.svg?branch=unit_tests)](https://travis-ci.org/RaitoBezarius/wannago)
-[![codecov.io](http://codecov.io/github/RaitoBezarius/wannago/coverage.svg?branch=unit_tests)](http://codecov.io/github/RaitoBezarius/wannago?branch=unit_tests)
+[![Build Status](https://travis-ci.org/RaitoBezarius/wannago.svg?branch=master)](https://travis-ci.org/RaitoBezarius/wannago)
+[![codecov.io](http://codecov.io/github/RaitoBezarius/wannago/coverage.svg?branch=master)](http://codecov.io/github/RaitoBezarius/wannago?branch=master)
 
 Well, you have a date with your girlfriend, you're young and you're living in a busy capital with a lot of traffic.
 (And obviously you don't have a car, it's too mainstream).

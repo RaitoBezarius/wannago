@@ -6,6 +6,7 @@ python:
 install: 
         - pip install -r requirements.txt
         - pip install codecov
-script: nosetests tests/
+script: nosetests --rednose --with-cov --cov-config=.coveragerc
 after_success:
-        codecov
+        - rm -rf tests/coverages
+        - codecov

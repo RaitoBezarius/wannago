@@ -20,13 +20,10 @@ class LocationManager:
 
     def __init__(self, api_impl):
         self.api = api_impl
-        self.default_zone = defaultConfig.getConfig('Coverage', 'DefaultZone')
-        if self.default_zone is None:
-            self.set_coverage_zone('fr-idf')
-
-    def set_coverage_zone(self, zone):
-        self.default_zone = zone
-        defaultConfig.setConfig('Coverage', 'DefaultZone', zone)
+        self.default_zone = defaultConfig.getConfig('Coverage',
+                                                    'DefaultZone',
+                                                    defaultValue='fr-idf',
+                                                    writeIfMissing=True)
 
     def whereiam(self, latitude, longitude):
         endpoint = 'coord/{latitude};{longitude}'.format(latitude=latitude,

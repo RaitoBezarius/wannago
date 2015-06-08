@@ -1,8 +1,10 @@
+# coding: utf8
+
 import math
 
 CLUT = [  # color look-up table
-#    8-bit, RGB hex
- 
+    # 8-bit, RGB hex
+
     # Primary 3-bit (8 colors). Unique representation!
     ('00',  '000000'),
     ('01',  '800000'),
@@ -12,8 +14,8 @@ CLUT = [  # color look-up table
     ('05',  '800080'),
     ('06',  '008080'),
     ('07',  'c0c0c0'),
- 
-    # Equivalent "bright" versions of original 8 colors.
+
+    # Equivalent 'bright' versions of original 8 colors.
     ('08',  '808080'),
     ('09',  'ff0000'),
     ('10',  '00ff00'),
@@ -22,7 +24,7 @@ CLUT = [  # color look-up table
     ('13',  'ff00ff'),
     ('14',  '00ffff'),
     ('15',  'ffffff'),
- 
+
     # Strictly ascending.
     ('16',  '000000'),
     ('17',  '00005f'),
@@ -240,7 +242,7 @@ CLUT = [  # color look-up table
     ('229', 'ffffaf'),
     ('230', 'ffffd7'),
     ('231', 'ffffff'),
- 
+
     # Gray-scale range.
     ('232', '080808'),
     ('233', '121212'),
@@ -268,25 +270,29 @@ CLUT = [  # color look-up table
     ('255', 'eeeeee'),
 ]
 
+
 def get_rgb(hexa):
     return int(hexa[0:2], 16), int(hexa[2:4], 16), int(hexa[4:6], 16)
 
+
 def distance(c1, c2):
     rmean = (c1[0] + c2[0]) >> 1
-    
+
     r = c1[0] - c2[0]
     g = c1[1] - c2[1]
     b = c1[2] - c2[2]
-    
+
     leftpart = ((512 + rmean) * (r ** 2)) >> 8
     midpart = 2 * (g ** 2)
     rightpart = ((767 - rmean) * (b ** 2)) >> 8
     return math.sqrt(leftpart + midpart + rightpart)
 
+
 def find_color(hexa):
-    """
-    Find the most nearest color from RGB space to 256 colors space using a lookup table.
-    """
+    '''
+    Find the most nearest color from RGB space to 256 colors space using a
+    lookup table.
+    '''
     h_rgb = get_rgb(hexa)
     min_distance = [1000000, None]
 
@@ -295,16 +301,16 @@ def find_color(hexa):
         if d < min_distance[0]:
             min_distance[0] = d
             min_distance[1] = tup[0]
-    
+
     return min_distance[1]
 
+
 def format_color(hexa, message):
-    """
+    '''
     Okay, here is the real deal.
-    """
+    '''
     escape_character = '\033[38;5;{fgcode}m'.format(fgcode=find_color(hexa))
 
     return '{color}{message}{reset}'.format(color=escape_character,
-            message=message,
-            reset='\033[0;00m')
-
+                                            message=message,
+                                            reset='\033[0;00m')

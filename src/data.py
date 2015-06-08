@@ -45,10 +45,12 @@ class Section:
                 else:
                     self.network_label = '{line}'.format(line=label)
             else:
-                self.network_label = '{net} {line}'.format(net=network, line=label)
+                self.network_label = '{net} {line}'.format(net=network,
+                                                           line=label)
 
     def __str__(self):
-        return '{duration} - {type}'.format(duration=self.duration, type=self.type)
+        return '{duration} - {type}'.format(duration=self.duration,
+                                            type=self.type)
 
 class Journey:
 

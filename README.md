@@ -26,7 +26,7 @@ But seriously, your public transport's website planner (Transilien in France for
 * When you finally get your route. It is overflowing with text, oftentimes a lot of redundant data:
     * Who cares about "METRO 14", just write M14.
     * Who cares about "DIRECTION ST MEMES LES CHAMPS WHAT THE FUCK", I'll figure it out once I know where I should stop.
-    * Who cares about big markup to prettify your route. What if Mathematics was written in english: "three plus four equals ...NO!". Just give me minimalist directions that I can qucikly and easily read and understand. 
+    * Who cares about big markup to prettify your route. What if Mathematics was written in english: "three plus four equals ...NO!". Just give me minimalist directions that I can qucikly and easily read and understand.
 
 Efficiency: *-1000*
 

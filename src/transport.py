@@ -1,5 +1,9 @@
+# coding: utf8
+
 import requests
+import arrow
 from config import defaultConfig
+
 
 class NavitiaImplementation:
 
@@ -9,17 +13,21 @@ class NavitiaImplementation:
 
     def call(self, url, params=None):
         headers = {'Authorization': self.auth_key}
-        result = requests.get(self.endpoint.format(url=url), params=params,
-                headers=headers).json()
+        result = requests.get(self.endpoint.format(url=url),
+                              params=params,
+                              headers=headers).json()
         if 'error' in result:
-            raise RuntimeError("Error when querying Navitia API: {msg}."
-            "({params})".format(msg=result['message'], params=params))
+            raise RuntimeError('Error when querying Navitia API: {msg}.'
+                               '({prms})'.format(msg=result['error']['message'],
+                                                 prms=params))
         return result
+
 
 class LocationManager:
 
     def __init__(self, api_impl):
         self.api = api_impl
+        self.aliases = defaultConfig.getSection('Aliases')
         self.default_zone = defaultConfig.getConfig('Coverage',
                                                     'DefaultZone',
                                                     defaultValue='fr-idf',
@@ -27,7 +35,7 @@ class LocationManager:
 
     def whereiam(self, latitude, longitude):
         endpoint = 'coord/{latitude};{longitude}'.format(latitude=latitude,
-                longitude=longitude)
+                                                         longitude=longitude)
 
         return self.api.call(endpoint)
 
@@ -39,6 +47,9 @@ class LocationManager:
     def get_place_id(self, place):
         if not self.is_place(place):
             return place
+
+        if place in self.aliases:
+            return self.aliases[place]
 
         place = self.get_place(place)
         return place['places'][0]['id']
@@ -52,9 +63,11 @@ class LocationManager:
         tplace_id = self.get_place_id(to_place)
 
         params = {'from': fplace_id,
-                'to': tplace_id}
+                  'to': tplace_id,
+                  'datetime': arrow.now().format('YYYYMMDDHHmmss')}
 
         return self.api.call(endpoint, params=params)
+
 
 def initialize_api(auth_key):
     if auth_key is not None:

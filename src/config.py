@@ -1,8 +1,13 @@
-import configparser, atexit
+# coding: utf8
 
-CONFIG_FILE = "wannago.conf"
+import configparser
+import atexit
+
+CONFIG_FILE = 'wannago.conf'
+
 
 class Config(configparser.ConfigParser):
+
     def __init__(self, config_file=CONFIG_FILE):
         super().__init__()
         self.read(config_file)
@@ -26,6 +31,12 @@ class Config(configparser.ConfigParser):
                 self.setConfig(section, name, defaultValue)
             return defaultValue
         return self[section][name]
+
+    def getSection(self, section, defaultValue=[]):
+        if not section in self:
+            return defaultValue
+
+        return self[section]
 
     def setToken(self, token):
         self.setConfig('Navitia', 'Token', token)

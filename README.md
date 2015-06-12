@@ -1,5 +1,6 @@
-
 # wannago
+[![Build Status](https://travis-ci.org/RaitoBezarius/wannago.svg?branch=master)](https://travis-ci.org/RaitoBezarius/wannago)
+[![codecov.io](http://codecov.io/github/RaitoBezarius/wannago/coverage.svg?branch=master)](http://codecov.io/github/RaitoBezarius/wannago?branch=master)
 
 Well, you have a date with your girlfriend, you're young and you're living in a busy capital with a lot of traffic.
 (And obviously you don't have a car, it's too mainstream).
@@ -25,7 +26,7 @@ But seriously, your public transport's website planner (Transilien in France for
 * When you finally get your route. It is overflowing with text, oftentimes a lot of redundant data:
     * Who cares about "METRO 14", just write M14.
     * Who cares about "DIRECTION ST MEMES LES CHAMPS WHAT THE FUCK", I'll figure it out once I know where I should stop.
-    * Who cares about big markup to prettify your route. What if Mathematics was written in english: "three plus four equals ...NO!". Just give me minimalist directions that I can qucikly and easily read and understand. 
+    * Who cares about big markup to prettify your route. What if Mathematics was written in english: "three plus four equals ...NO!". Just give me minimalist directions that I can qucikly and easily read and understand.
 
 Efficiency: *-1000*
 
@@ -43,6 +44,11 @@ $ wannago to "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
 
 Ok, so you're pretty hyped, right?
 Good. I've showed examples for Paris, essentially. But it supports every public transport that Navitia.io supports.
+
+Tests
+=====
+Tests needs nosetests. (`pip install nosetests`)
+Run `nosetests tests/` inside the repository's folder.
 
 Status
 ======

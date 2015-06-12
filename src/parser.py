@@ -14,6 +14,7 @@ class Stream:
            self.iterator += 1
 
            return rv
+        raise StopIteration
 
     def save(self):
         self.saves.append(self.iterator)

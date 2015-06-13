@@ -1,4 +1,5 @@
 class Stream:
+
     def __init__(self, iterable):
         self.iterable = iterable
         self.saves = list()
@@ -10,10 +11,11 @@ class Stream:
 
     def __next__(self):
         if self.iterator < self.length:
-           rv = self.iterable[self.iterator]
-           self.iterator += 1
+            rv = self.iterable[self.iterator]
+            self.iterator += 1
 
-           return rv
+            return rv
+
         raise StopIteration
 
     def save(self):
@@ -28,7 +30,9 @@ class Stream:
     def drop(self):
         self.saves.pop()
 
-class Word_rule:
+
+class WordRule:
+
     def __init__(self, function_matcher,
                  identifier=None,
                  default=None):
@@ -38,10 +42,9 @@ class Word_rule:
 
         self.list_callback = list()
 
-    def __call__(self, stream):
-        unity = next(stream)
-        if self.function_matcher(unity):
-            self.value = unity
+    def __call__(self, element):
+        if self.function_matcher(element):
+            self.value = element
             for callback in self.list_callback:
                 self.value = callback(self.value)
 
@@ -51,39 +54,43 @@ class Word_rule:
                 return dict()
 
     def __add__(self, rule):
-        return Union_rule([self, rule])
+        return UnionRule([self, rule])
 
     def __radd__(self, rule):
-        return Union_rule([rule, self])
+        return UnionRule([rule, self])
 
     def __mul__(self, rule):
-        return Concatenation_rule([self, rule])
+        return ConcatenationRule([self, rule])
 
     def __rmul__(self, rule):
-        return Concatenation_rule([rule, self])
+        return ConcatenationRule([rule, self])
 
     def add_callback(self, callback):
         self.list_callback.append(callback)
 
+
 class Rule:
+
     def __init__(self, rules=None):
         if rules == None:
             self.rules = list()
         else:
             self.rules = rules.copy()
 
-class Concatenation_rule(Rule):
+
+class ConcatenationRule(Rule):
+
     def __add__(self, rule):
-        return Union_rule([self, rule])
+        return UnionRule([self, rule])
 
     def __radd__(self, rule):
-        return Union_rule([rule, self])
+        return UnionRule([rule, self])
 
     def __mul__(self, rule):
-        return Concatenation_rule(self.rules + [rule])
+        return ConcatenationRule(self.rules + [rule])
 
     def __rmul__(self, rule):
-        return Concatenation_rule([rule] + self.rules)
+        return ConcatenationRule([rule] + self.rules)
 
     def __call__(self, stream):
         if not isinstance(stream, Stream):
@@ -103,18 +110,20 @@ class Concatenation_rule(Rule):
 
         stream.pop()
 
-class Union_rule:
+
+class UnionRule:
+
     def __add__(self, rule):
-        return Union_rule(self.rules + [rule])
+        return UnionRule(self.rules + [rule])
 
     def __radd__(self, rule):
-        return Union_rule([rule] + self.rules)
+        return UnionRule([rule] + self.rules)
 
     def __mul__(self, rule):
-        return Concatenation_rule([self, rule])
+        return ConcatenationRule([self, rule])
 
     def __rmul__(self, rule):
-        return Concatenation_rule([rule, self])
+        return ConcatenationRule([rule, self])
 
     def __call__(self, stream):
         if not isinstance(stream, Stream):
@@ -131,10 +140,12 @@ class Union_rule:
 
         stream.pop()
 
+
 def keyword(keyword):
-    return Word_rule(lambda s: s == keyword)
+    return WordRule(lambda s: s == keyword)
+
 
 def argument(name, default=None, matcher=None):
     if matcher != None:
-        return Word_rule(matcher, name, default)
-    return Word_rule(lambda s: bool(s), name, default)
+        return WordRule(matcher, name, default)
+    return WordRule(lambda s: bool(s), name, default)

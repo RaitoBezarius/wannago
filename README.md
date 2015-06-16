@@ -32,14 +32,47 @@ Efficiency: *-1000*
 
 What if power users (and developers essentially) could just write:
 ```console
-$ wannago to EPITECH from home
-[79 mn] RER B - Mitry-Claye (Mitry-Mory) [4 mn] ==> Train K - Gare du Nord Surface (Paris) [16 mn] ==> RER B - Cit├® Universitaire (Paris) [13 mn] ==> T3a - PORTE D'ITALIE (Paris) [5 mn]
+$ wannago to "EPITECH" from home
+[80 mn] - [19h49]
+==> Walk to Villeparisis (Mitry-Mory) [11 mn - 691 meter]
+==> RER B - Cité Universitaire (Paris) [42 mn]
+==> T3a - PORTE D'ITALIE (Paris) [6 mn]
+==> Walk to EPITA / EPITECH (Le Kremlin-Bicêtre) [10 mn - 659 meter]
+[21h08]
 ```
+
+```console
+$ wannago to "Tour Eiffel" --from home
+[69 mn] - [19h49]
+==> Walk to Villeparisis (Mitry-Mory) [11 mn - 691 meter]
+==> RER B - Saint-Michel (Paris) [34 mn]
+==> RER C - Pont de l'Alma (Paris) [8 mn]
+==> Walk to TOUR EIFFEL (Paris) [8 mn - 521 meter]
+[20h57]
+```
+
+wannago works nearly everywhere, you don't like France? No problem! Just switch your zone:
+```console
+$ wannago switch us-ny
+```
+
+```console
+$ wannago to "Madison Street" --from "Livingston Street"
+[243 mn] - [20h14]
+==> New Jersey's public transportation 814 - MIDDLESEX COUNTY COLLEGE (Edison) [31 mn]
+==> New Jersey's public transportation 813 - WASHINGTON ST AT HIGH ST (Perth Amboy) [46 mn]
+==> New Jersey's public transportation 116 - PORT AUTHORITY BUS TERMINAL [59 mn]
+==> New Jersey's public transportation 126 - PORT AUTHORITY BUS TERMINAL [0 mn]
+==> New Jersey's public transportation 126 - WASHINGTON ST AT 4TH ST (Hoboken) [19 mn]
+==> Walk to Madison Street Park (Hoboken) [13 mn - 847 meter]
+[00h16]
+```
+
+You can switch to one of all datasets available there: http://navitia.io/datasets
 
 I hope you will be able to do cool thing like this, very soon:
 ```console
 $ wannago to "5 Rue de Choisy" from school without Bus,Metro at 5:00PM or 6:00PM
-[total mn] RER B - Gare du Nord (x mn) => Walk to "5 Rue de Choisy" (y mn)
 ```
 
 Ok, so you're pretty hyped, right?

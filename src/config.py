@@ -31,7 +31,7 @@ class Config(object):
         if not section in self.cfg:
             return defaultValue
 
-        return self.cfg[section]
+        return [option for option in self.cfg[section]]
 
     def setToken(self, token):
         self.setConfig('Navitia', 'Token', token)

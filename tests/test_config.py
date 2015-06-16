@@ -67,6 +67,9 @@ class TestConfigStore(unittest.TestCase):
             setConfMock.assert_called_once_with('Test3', 'Aha', '5')
 
     def test_get_section(self):
+        self.defaultConfig.setConfig('Test1', 'Hey!', '1')
+        self.defaultConfig.setConfig('Test1', 'Hey2!', '1')
+        self.assertEqual(self.defaultConfig.getSection('Test1'), ['hey!', 'hey2!']) # lowercase always
         self.assertEqual(self.defaultConfig.getSection('NULL', defaultValue=['a', 'b']), ['a', 'b'])
         self.assertEqual(self.defaultConfig.getSection('NULL'), [])
 

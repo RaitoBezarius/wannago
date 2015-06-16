@@ -84,3 +84,4 @@ if __name__ == '__main__':
     api = initialize_api(args.token)
     args.api = api
     args.func(args)
+    defaultConfig.writeConfig()

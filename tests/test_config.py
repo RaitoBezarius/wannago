@@ -40,6 +40,12 @@ class TestConfigStore(unittest.TestCase):
         self.config_file = "wannago.conf"
         self.defaultConfig = ConfigTestWrapper(self.config_file)
 
+    def test_get_set_token(self):
+        self.defaultConfig.setToken('something')
+        token = self.defaultConfig.getToken()
+        self.assertEqual(token, 'something')
+
+
     def test_set_config(self):
         self.defaultConfig.setConfig('Test1', 'NewValue', '1')
         self.assertEqual(self.defaultConfig.getConfig('Test1', 'NewValue'), '1')
@@ -55,6 +61,10 @@ class TestConfigStore(unittest.TestCase):
         self.assertEqual(self.defaultConfig.getConfig('Test1', 'NewValue'), '15')
         self.assertEqual(self.defaultConfig.getConfig('Test1', 'NewValue', '20'), '15')
         self.assertEqual(self.defaultConfig.getConfig('Test2', 'Aha', defaultValue='1'), '1')
+        
+        with mock.patch('src.config.Config.setConfig') as setConfMock:
+            self.defaultConfig.getConfig('Test3', 'Aha', defaultValue='5', writeIfMissing=True)
+            setConfMock.assert_called_once_with('Test3', 'Aha', '5')
 
     def test_get_section(self):
         self.assertEqual(self.defaultConfig.getSection('NULL', defaultValue=['a', 'b']), ['a', 'b'])

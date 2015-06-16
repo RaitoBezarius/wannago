@@ -17,9 +17,9 @@ class NavitiaImplementation:
                               params=params,
                               headers=headers).json()
         if 'error' in result:
-            raise RuntimeError('Error when querying Navitia API: {msg}.'
-                               '({prms})'.format(msg=result['error']['message'],
-                                                 prms=params))
+            raise RuntimeError('Error when querying Navitia API: {msg}. ({prms})'
+                    .format(msg=result['error']['message'],
+                    prms=params))
         return result
 
 

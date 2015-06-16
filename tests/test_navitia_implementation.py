@@ -3,6 +3,7 @@
 from src.transport import NavitiaImplementation
 import unittest
 from unittest import mock
+import json
 
 
 class TestNavitiaImplementation(unittest.TestCase):
@@ -28,3 +29,14 @@ class TestNavitiaImplementation(unittest.TestCase):
         reqMock.get.assert_called_with(impl.endpoint.format(url='test'),
                                        params=None,
                                        headers={'Authorization': impl.auth_key})
+
+        resultMock.json.return_value = json.loads("""
+            {
+                "error": {
+                    "message": "Test error"
+                }
+            }""")
+        reqMock.get.return_value = resultMock
+
+        self.assertRaises(RuntimeError, impl.call, 'test')
+

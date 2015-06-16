@@ -32,16 +32,102 @@ class TestReportingSystem(unittest.TestCase):
                                 "name": "Paris"
                             },
                             "to": {
-                                "id": 123,
+                                "id": "123",
                                 "embedded_type": "stop_area",
                                 "name": "New York"
                             },
                             "display_informations": {
-                                "network": "RyanTransport",
-                                "physical_mode": "Teleportation",
-                                "label": "Alpha",
+                                "network": "RATP",
+                                "physical_mode": "Métro",
+                                "label": "7",
                                 "color": "E2B3D1"
                             }
+                        },
+                        {
+                           "duration": 1500,
+                           "type": "public_transport",
+                           "from": {
+                                "id": "123",
+                                "embedded_type": "stop_area",
+                                "name": "Paris"
+                            },
+                            "to": {
+                                "id": "123",
+                                "embedded_type": "stop_area",
+                                "name": "New York"
+                            },
+                            "display_informations": {
+                                "network": "Transilien",
+                                "physical_mode": "K",
+                                "label": "K",
+                                "color": "E2B3D1"
+                            }
+                        },
+                        {
+                           "duration": 600,
+                           "type": "public_transport",
+                           "from": {
+                                "id": "123",
+                                "embedded_type": "stop_area",
+                                "name": "Paris"
+                            },
+                            "to": {
+                                "id": "123",
+                                "embedded_type": "stop_area",
+                                "name": "New York"
+                            },
+                            "display_informations": {
+                                "network": "RATP",
+                                "physical_mode": "Tramway",
+                                "label": "3a",
+                                "color": "E2B3D1"
+                            }
+                        },
+                        {
+                           "duration": 600,
+                           "type": "public_transport",
+                           "from": {
+                                "id": "123",
+                                "embedded_type": "stop_area",
+                                "name": "Paris"
+                            },
+                            "to": {
+                                "id": "123",
+                                "embedded_type": "stop_area",
+                                "name": "New York"
+                            },
+                            "display_informations": {
+                                "network": "YouveNeverHeardAboutIt",
+                                "physical_mode": "o_o",
+                                "label": "w_w",
+                                "color": "E2B3D1"
+                            }
+                        },
+                        {
+                            "duration": 900,
+                            "type": "street_network",
+                            "from": {
+                                "id": "345",
+                                "embedded_type": "stop_area",
+                                "name": "New York"
+                            },
+                            "to": {
+                                "id": "567",
+                                "embedded_type": "address",
+                                "name": "Random New York Address"
+                            },
+                            "path": [
+                                {
+                                    "length": 300
+                                },
+                                {
+                                    "length": 250
+                                },
+                                {
+                                    "length": 900
+                                }
+                            ],
+                            "length": 1450
                         }
                     ]
                 }
@@ -50,5 +136,8 @@ class TestReportingSystem(unittest.TestCase):
 
         message = report_journey(api, 'somewhere', 'someto')
         self.assertIn('10 mn', message)
-        self.assertIn('RyanTransport', message)
+        self.assertIn('M7', message)
         self.assertIn('New York', message)
+        self.assertIn('Walk', message)
+        self.assertIn('1450 meter', message)
+        self.assertIn('Train', message)

@@ -69,9 +69,10 @@ class TestConfigStore(unittest.TestCase):
     def test_get_section(self):
         self.defaultConfig.setConfig('Test1', 'Hey!', '1')
         self.defaultConfig.setConfig('Test1', 'Hey2!', '1')
-        self.assertEqual(self.defaultConfig.getSection('Test1'), ['hey!', 'hey2!']) # lowercase always
+        self.assertEqual(self.defaultConfig.getSection('Test1')['Hey!'], '1')
+        self.assertIn(self.defaultConfig.getSection('Test1')['Hey2!'], '1')
         self.assertEqual(self.defaultConfig.getSection('NULL', defaultValue=['a', 'b']), ['a', 'b'])
-        self.assertEqual(self.defaultConfig.getSection('NULL'), [])
+        self.assertEqual(self.defaultConfig.getSection('NULL'), {})
 
     def test_write_config(self):
         m_open = self.defaultConfig.writeConfig()

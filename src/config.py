@@ -27,11 +27,11 @@ class Config(object):
                 self.setConfig(section, name, defaultValue)
             return defaultValue
         return self.cfg[section][name]
-    def getSection(self, section, defaultValue=[]):
+    def getSection(self, section, defaultValue={}):
         if not section in self.cfg:
             return defaultValue
 
-        return [option for option in self.cfg[section]]
+        return self.cfg[section]
 
     def setToken(self, token):
         self.setConfig('Navitia', 'Token', token)

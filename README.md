@@ -48,7 +48,10 @@ Good. I've showed examples for Paris, essentially. But it supports every public 
 Tests
 =====
 Tests needs nosetests. (`pip install nosetests`)
-Run `nosetests tests/` inside the repository's folder.
+Run `nosetests` inside the repository's folder.
+
+There are some integration tests which requires you to set a environnement variable: `TEST_NAVITIA_API_KEY` (your Navitia API Key)
+
 
 Status
 ======

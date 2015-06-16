@@ -38,7 +38,7 @@ def subcommand(func):
 @subcommand(handle_coverage_switching)
 def enable_coverage_switcher(parser):
     coverage_switcher = parser.add_parser('switch', help='Coverage zone switch help')
-    coverage_switcher.add_argument('zone', type=str, choices=['fr-idf'], help='The new zone where the system will work')
+    coverage_switcher.add_argument('zone', type=str, help='The new zone where the system will work, a complete list is available here: http://navitia.io/datasets')
     return coverage_switcher
 
 

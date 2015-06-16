@@ -33,6 +33,9 @@ class LocationManager:
                                                     defaultValue='fr-idf',
                                                     writeIfMissing=True)
 
+    def set_coverage_zone(self, new_zone):
+        defaultConfig.setConfig('Coverage', 'DefaultZone', new_zone)
+
     def whereiam(self, latitude, longitude):
         endpoint = 'coord/{latitude};{longitude}'.format(latitude=latitude,
                                                          longitude=longitude)
